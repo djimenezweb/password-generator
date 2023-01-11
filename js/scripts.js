@@ -1,4 +1,5 @@
 const formElement = document.getElementById('form');
+const rangeElement = document.getElementById('range');
 const passwordLengthElement = document.getElementById('password-length');
 const generatedPasswordElement = document.getElementById('generated-password');
 // Checkboxes START
@@ -31,12 +32,13 @@ let newString = '';
 // Función que detecta cambios en el formulario
 // Vincular valor del range con longitud de la contraseña
 formElement.addEventListener('change', e => {
-  passwordLength = e.target.value;
+  passwordLength = rangeElement.value;  
   passwordLengthElement.textContent = passwordLength;
   if (uppercaseElement.checked) newString += strings.uppercase;
   if (lowercaseElement.checked) newString += strings.lowercase;
   if (numbersElement.checked) newString += strings.numbers;
   if (symbolsElement.checked) newString += strings.symbols;
+  console.log(e.target)
   console.log(newString);
 });
 
@@ -55,8 +57,4 @@ const generatePassword = () => {
 formElement.addEventListener('submit', e => {
   e.preventDefault();
   generatePassword();
-  if (uppercaseElement.checked) console.log('Uppercase checked');
-  if (lowercaseElement.checked) console.log('Lowercase checked');
-  if (numbersElement.checked) console.log('Numbers checked');
-  if (symbolsElement.checked) console.log('Symbols checked');
 });
