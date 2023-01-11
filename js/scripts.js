@@ -1,26 +1,56 @@
 const formElement = document.getElementById('form');
 const passwordLengthElement = document.getElementById('password-length');
 const generatedPasswordElement = document.getElementById('generated-password');
-// Constantes de los checkboxes
+// Checkboxes START
 const uppercaseElement = document.getElementById('uppercase');
 const lowercaseElement = document.getElementById('lowercase');
 const numbersElement = document.getElementById('numbers');
 const symbolsElement = document.getElementById('symbols');
-// Fin constantes de los checkboxes
+// Checkboxes END
 const generateElement = document.getElementById('generate');
 
-const alphabet = 'abcdefghijklmnñopqrstuvwxyz';
+// Objeto "strings" con los strings básicos
+const strings = {
+uppercase: 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ',
+lowercase: 'abcdefghijklmnñopqrstuvwxyz',
+numbers: '0123456789',
+symbols: '!()-.?[]_~:@#$%^&*+='
+}
 
+// Función número aleatorio
 const minMaxRandomNumber = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
-minMaxRandomNumber(3, 8);
-
 // Variable con la longitud de la contraseña
 let passwordLength = 0;
 
-// Para que no se actualice al enviar formulario (comportamiento por defecto)
+// String de donde se extraerán caracteres para la contraseña final
+let newString = '';
+
+// Función que detecta cambios en el formulario
+// Vincular valor del range con longitud de la contraseña
+formElement.addEventListener('change', e => {
+  passwordLength = e.target.value;
+  passwordLengthElement.textContent = passwordLength;
+  if (uppercaseElement.checked) newString += strings.uppercase;
+  if (lowercaseElement.checked) newString += strings.lowercase;
+  if (numbersElement.checked) newString += strings.numbers;
+  if (symbolsElement.checked) newString += strings.symbols;
+  console.log(newString);
+});
+
+// Generar contraseña a partir de newString
+const generatePassword = () => {
+  let newPassword = ''
+  for (let index = 0; index < passwordLength; index++) {
+    newPassword += newString.charAt(minMaxRandomNumber(0, newString.length));
+  }
+  generatedPasswordElement.value = newPassword;
+};
+
+// ENVIAR FORMULARIO
+// Contiene un preventDefault para que el navegador no se actualice al enviarlo (comportamiento por defecto)
 // Y para que genere la constraseña
 formElement.addEventListener('submit', e => {
   e.preventDefault();
@@ -30,18 +60,3 @@ formElement.addEventListener('submit', e => {
   if (numbersElement.checked) console.log('Numbers checked');
   if (symbolsElement.checked) console.log('Symbols checked');
 });
-
-// Vincular valor del range con longitud de la contraseña
-formElement.addEventListener('change', e => {
-  passwordLength = e.target.value;
-  passwordLengthElement.textContent = passwordLength;
-});
-
-// Generar contraseña
-const generatePassword = () => {
-  let newString = '';
-  for (let index = 0; index < passwordLength; index++) {
-    newString += alphabet.charAt(minMaxRandomNumber(0, alphabet.length));
-  }
-  generatedPasswordElement.value = newString;
-};
