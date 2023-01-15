@@ -1,49 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
     <title>Password Generator</title>
-</head>
-<body>
-    
-    <input type="text" id="generated-password" placeholder="password" readonly>
+  </head>
+  <body>
+    <article>
+      <div class="container">
+        <input
+          type="text"
+          id="generated-password"
+          class="generated-password"
+          placeholder="contraseña"
+          readonly
+        />
+      </div>
 
-    <form id="form">
-        <label for="range">
-            Character Length
-            <span id="password-length">0</span>
-        </label>
-        <input type="range" name="range" id="range" min="0" max="20" step="1" value="0">
-        
-        <div class="field">
-            <input type="checkbox" name="uppercase" id="uppercase">
-            <label for="uppercase">Include Uppercase Letters</label>
-        </div>
+      <div class="container">
+    <form id="form" class="form">
+      <label for="range" class="range-label">
+        Longitud
+        <span id="password-length">0</span>
+      </label>
+      <input
+        type="range"
+        name="range"
+        id="range"
+        min="0"
+        max="20"
+        step="1"
+        value="0"
+      />
 
-        <div class="field">
-            <input type="checkbox" name="lowercase" id="lowercase">
-            <label for="lowercase">Include Lowercase Letters</label>
-        </div>
-        
-        <div class="field">
-            <input type="checkbox" name="numbers" id="numbers">
-            <label for="numbers">Include Numbers</label>
-        </div>
-        
-        <div class="field">
-            <input type="checkbox" name="symbols" id="symbols">
-            <label for="symbols">Include Symbols</label>
-        </div>
-
-        <div class="strength">
-            <span class="strength__title">STRENGTH</span>
-            <span id="strength-value"></span>
+      <div class="options">
+          <div class="field">
+            <input type="checkbox" name="uppercase" id="uppercase" />
+            <label for="uppercase">Incluir mayúsculas</label>
           </div>
+          <div class="field">
+            <input type="checkbox" name="lowercase" id="lowercase" />
+            <label for="lowercase">Incluir minúsculas</label>
+          </div>
+          <div class="field">
+            <input type="checkbox" name="numbers" id="numbers" />
+            <label for="numbers">Incluir números</label>
+          </div>
+          <div class="field">
+            <input type="checkbox" name="symbols" id="symbols" />
+            <label for="symbols">Incluir símbolos</label>
+          </div>
+      </div>
 
-        <button id="generate" disabled>Generate</button>
-    </form>
-    <script src="js/scripts.js"></script>
-</body>
+      <div class="strength">
+        <span class="strength__title">Fortaleza</span>
+        <span id="strength-value">Muy corta</span>
+      </div>
+
+      <button id="generate" class="button" disabled>Generar</button>
+    
+</form>
+<script src="js/scripts.js"></script>
+  </body>
 </html>

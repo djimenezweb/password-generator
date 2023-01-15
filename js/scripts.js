@@ -9,7 +9,7 @@ const numbersElement = document.getElementById('numbers');
 const symbolsElement = document.getElementById('symbols');
 // Checkboxes END
 const strengthElement = document.getElementById('strength-value');
-const strengthWarning = ['Too weak!', 'Weak', 'Medium', 'Strong'];
+const strengthWarning = ['Muy débil', 'Débil', 'Media', 'Fuerte'];
 const generateElement = document.getElementById('generate');
 
 // Objeto "strings" con los strings básicos
@@ -45,10 +45,10 @@ formElement.addEventListener('change', e => {
   if (symbolsElement.checked) newString += strings.symbols;
 
   if (passwordLength < 5) {
-    strengthElement.textContent = 'Too short';
+    strengthElement.textContent = 'Muy corta';
     generateElement.setAttribute('disabled', 0);
   } else if (checkedBoxes.length === 0) {
-    strengthElement.textContent = 'No options checked';
+    strengthElement.textContent = 'Ninguna opción elegida';
     generateElement.setAttribute('disabled', 0);
   } else {
     generateElement.removeAttribute('disabled');
